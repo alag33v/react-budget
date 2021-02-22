@@ -119,6 +119,7 @@ export const StyledApp = styled.div`
         top: 50%;
         right: 5px;
         transform: translateY(-50%);
+        fill: #000;
         pointer-events: none;
         position: absolute;
       }
@@ -142,6 +143,7 @@ export const StyledApp = styled.div`
     }
 
     input {
+      color: #221738;
       width: 100%;
       border: none;
       border-bottom: 2px solid #222;
@@ -167,20 +169,14 @@ export const StyledApp = styled.div`
       cursor: pointer;
 
       &:hover {
+        color: rgba(255, 255, 255, 0.7);
         background-color: #96e8c3;
       }
 
       &:active {
+        color: rgba(255, 255, 255, 1);
         background-color: #65e0a9;
       }
     }
   }
-
-  /* .description {
-    width: 75%;
-  }
-
-  .value {
-    width: 20%;
-  } */
 `;
