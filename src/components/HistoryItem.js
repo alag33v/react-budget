@@ -2,15 +2,9 @@ import { useState } from 'react';
 import { MdModeEdit } from 'react-icons/md';
 import { FaTrashAlt } from 'react-icons/fa';
 import { EditEntryForm } from './index';
+import { deleteTransaction } from '../redux/ducks/budgetDucks';
 
-const HistoryItem = ({
-  isExpense,
-  description,
-  value,
-  id,
-  editItem,
-  deleteItem
-}) => {
+const HistoryItem = ({ isExpense, description, value, id, dispatch }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -21,11 +15,12 @@ const HistoryItem = ({
     >
       {isOpen ? (
         <EditEntryForm
-          addItem={editItem}
-          id={id}
-          setIsOpen={setIsOpen}
+          oldIsExpense={isExpense}
           oldDescription={description}
           oldValue={value}
+          id={id}
+          setIsOpen={setIsOpen}
+          dispatch={dispatch}
         />
       ) : (
         <>
@@ -33,7 +28,10 @@ const HistoryItem = ({
           <span>${value}</span>
           <div className='history-icons'>
             <MdModeEdit className='edit' onClick={() => setIsOpen(true)} />
-            <FaTrashAlt className='delete' onClick={() => deleteItem(id)} />
+            <FaTrashAlt
+              className='delete'
+              onClick={() => dispatch(deleteTransaction(id))}
+            />
           </div>
         </>
       )}

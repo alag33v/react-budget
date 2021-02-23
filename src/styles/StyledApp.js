@@ -140,6 +140,12 @@ export const StyledApp = styled.div`
         pointer-events: none;
         position: absolute;
       }
+
+      .error {
+        color: #cc4f39;
+        margin-top: 5px;
+        position: absolute;
+      }
     }
 
     input {

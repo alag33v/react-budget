@@ -19,22 +19,22 @@ const budgetReducer = (state = initialState, action) => {
         ...state,
         historyItems: [...state.historyItems, action.payload]
       };
-    case EDIT_TRANSACTION:
-      return {
-        ...state,
-        historyItems: [
-          ...state.historyItems.filter(item => item.id !== action.payload.id),
-          action.payload
-        ]
-      };
     // case EDIT_TRANSACTION:
-    //   const newItems = [...state];
-    //   const index = newItems.findIndex(item => item.id === action.payload.id);
-    //   newItems[index].description = action.payload.description;
-    //   newItems[index].value = action.payload.value;
-    //   newItems[index].isExpense = action.payload.isExpense;
+    //   return {
+    //     ...state,
+    //     historyItems: [
+    //       ...state.historyItems.filter(item => item.id !== action.payload.id),
+    //       action.payload
+    //     ]
+    //   };
 
-    //   return { newItems };
+    case EDIT_TRANSACTION:
+      const historyItems = [...state.historyItems];
+      const index = historyItems.findIndex(
+        item => item.id === action.payload.id
+      );
+      historyItems[index] = { ...action.payload };
+      return { historyItems };
     case DELETE_TRANSACTION: {
       const newHistoryItems = state.historyItems.filter(
         item => item.id !== action.payload

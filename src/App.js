@@ -1,18 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { v4 as uuid } from 'uuid';
-import {
-  Header,
-  Balance,
-  Budget,
-  HistoryItem,
-  NewEntryForm
-} from './components';
-import {
-  addNewTransaction,
-  editTransaction,
-  deleteTransaction
-} from './redux/ducks/budgetDucks';
+import { Balance, Budget, HistoryItem, NewEntryForm } from './components';
 import { GlobalStyle } from './styles/GlobalStyle';
 import { StyledApp } from './styles/StyledApp';
 
@@ -36,51 +24,21 @@ const App = () => {
     setTotal(totalIncome - totalExpenses);
   }, [historyItems]);
 
-  const deleteHistoryItem = id => {
-    dispatch(deleteTransaction(id));
-  };
-
-  const addHistoryItems = (description, value, isExpense) => {
-    const newObj = {
-      id: uuid(),
-      isExpense,
-      description,
-      value
-    };
-    dispatch(addNewTransaction(newObj));
-  };
-
-  const editHistoryItem = (description, value, isExpense, id, setIsOpen) => {
-    const newObj = {
-      id,
-      isExpense,
-      description,
-      value
-    };
-    dispatch(editTransaction(newObj));
-    setIsOpen(false);
-  };
-
   return (
     <>
       <GlobalStyle />
       <StyledApp>
-        <Header />
+        <h1>Budget</h1>
         <Balance total={total} />
         <Budget totalIncome={totalIncome} totalExpenses={totalExpenses} />
         <h2>History:</h2>
         <div className='history__wrapper'>
           {historyItems.map(item => (
-            <HistoryItem
-              {...item}
-              editItem={editHistoryItem}
-              deleteItem={deleteHistoryItem}
-              key={item.id}
-            />
+            <HistoryItem {...item} dispatch={dispatch} key={item.id} />
           ))}
         </div>
         <h2>Add new transaction</h2>
-        <NewEntryForm addItem={addHistoryItems} />
+        <NewEntryForm dispatch={dispatch} />
       </StyledApp>
     </>
   );
