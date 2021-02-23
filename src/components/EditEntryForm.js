@@ -12,7 +12,6 @@ const EditEntryForm = ({
   const [description, setDescription] = useState(oldDescription);
   const [value, setValue] = useState(oldValue);
   const [isExpense, setIsExpense] = useState(false);
-  console.log(oldDescription);
 
   return (
     <form className='form__wrapper'>

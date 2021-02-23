@@ -6,9 +6,9 @@ const DELETE_TRANSACTION = 'budget/DELETE_TRANSACTION';
 // Reducer
 const initialState = {
   historyItems: [
-    { id: 0, isExpense: false, description: 'Work income', value: 2000 },
-    { id: 1, isExpense: true, description: 'Rent', value: 1300 },
-    { id: 2, isExpense: true, description: 'Water bill', value: 20 }
+    { id: '0', isExpense: false, description: 'Work income', value: 2000 },
+    { id: '1', isExpense: true, description: 'Rent', value: 1300 },
+    { id: '2', isExpense: true, description: 'Water bill', value: 20 }
   ]
 };
 

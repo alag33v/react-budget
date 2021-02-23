@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { v4 as uuid } from 'uuid';
 import {
   Header,
   Balance,
@@ -41,7 +42,7 @@ const App = () => {
 
   const addHistoryItems = (description, value, isExpense) => {
     const newObj = {
-      id: historyItems.length + 1,
+      id: uuid(),
       isExpense,
       description,
       value
