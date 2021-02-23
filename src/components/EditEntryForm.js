@@ -2,10 +2,17 @@ import { useState } from 'react';
 import { FaDollarSign } from 'react-icons/fa';
 import { AiFillTag } from 'react-icons/ai';
 
-const NewEntryForm = ({ addItem, id, setIsOpen }) => {
-  const [description, setDescription] = useState('');
-  const [value, setValue] = useState('');
+const EditEntryForm = ({
+  addItem,
+  id,
+  setIsOpen,
+  oldDescription,
+  oldValue
+}) => {
+  const [description, setDescription] = useState(oldDescription);
+  const [value, setValue] = useState(oldValue);
   const [isExpense, setIsExpense] = useState(false);
+  console.log(oldDescription);
 
   return (
     <form className='form__wrapper'>
@@ -41,15 +48,12 @@ const NewEntryForm = ({ addItem, id, setIsOpen }) => {
         type='button'
         onClick={() => {
           addItem(description, value, isExpense, id, setIsOpen);
-          setDescription('');
-          setValue('');
-          setIsExpense(false);
         }}
       >
-        Add
+        Edit
       </button>
     </form>
   );
 };
 
-export default NewEntryForm;
+export default EditEntryForm;

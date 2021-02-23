@@ -1,8 +1,8 @@
-const Balance = () => {
+const Balance = ({ total }) => {
   return (
     <div className='balance'>
       <h2 className='balance-title'>Your balance:</h2>
-      <span>25000</span>
+      <span>{total}</span>
     </div>
   );
 };
